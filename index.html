@@ -1,1 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Deposit Platform</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.0.3/web3.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Crypto Wallet Connect & Deposit</h1>
+    
+    <button onclick="connectWallet()">Connect Wallet</button>
+    <p id="walletAddress">Wallet Not Connected</p>
 
+    <input type="number" id="amount" placeholder="Enter Amount in ETH">
+    <button onclick="deposit()">Deposit</button>
+    <p id="response"></p>
+
+    <script src="app.js"></script>
+</body>
+</html>
