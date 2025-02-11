@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Deposit Platform</title>
+    <title>Crypto Wallet DApp Connect</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.0.3/web3.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Crypto Wallet Connect & Deposit</h1>
+    <h1>Connect Your Wallet</h1>
     
     <button onclick="connectWallet()">Connect Wallet</button>
     <p id="walletAddress">Wallet Not Connected</p>
 
-    <input type="number" id="amount" placeholder="Enter Amount in ETH">
-    <button onclick="deposit()">Deposit</button>
-    <p id="response"></p>
+    <div id="options" style="display: none;">
+        <h2>Select DApp</h2>
+        <select id="dappSelect">
+            <option value="none">Choose an option</option>
+            <option value="https://opensea.io/">OpenSea Marketplace</option>
+            <option value="https://uniswap.org/">Uniswap Exchange</option>
+            <option value="https://pancakeswap.finance/">PancakeSwap</option>
+        </select>
+        <button onclick="goToDapp()">Go to DApp</button>
+    </div>
 
     <script src="app.js"></script>
 </body>
