@@ -1,42 +1,60 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>টাকা ঘর বিডি</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>টাকা ঘর বিডি</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>টাকা ঘর বিডি</h1>
-    <marquee behavior="scroll" direction="left">💸 ৫০ টাকা দিয়ে একাউন্ট একটিভ করে ইনকাম শুরু করুন! ৫০ টাকা পাঠিয়ে আপনার নাম্বার ও ট্রানজেকশন আইডি দিয়ে সাবমিট করুন।</marquee>
-    
-    <div class="copy-section">
-      <p id="copy-number">01997747613</p>
-      <button onclick="copyNumber()">কপি</button>
+
+    <div class="container">
+        <h1 class="title">টাকা ঘর বিডি</h1>
+
+        <div id="payment-number">
+            <p>সেন্ড মানি করুন: <span id="copy-number" onclick="copyNumber()">01997747613</span></p>
+        </div>
+
+        <div class="payment-options">
+            <button class="payment-method" id="nagad" onclick="selectMethod('নগদ')">নগদ</button>
+            <button class="payment-method" id="bkash" onclick="selectMethod('বিকাশ')">বিকাশ</button>
+        </div>
+
+        <div class="input-section">
+            <input type="text" id="phone" placeholder="আপনার নাম্বার লিখুন">
+            <input type="text" id="transaction-id" placeholder="ট্রানজেকশন আইডি লিখুন">
+        </div>
+
+        <button class="submit-btn" onclick="submitPayment()">সাবমিট</button>
+
+        <div id="loading-popup" class="popup">
+            <div class="popup-content">
+                <div class="loader"></div>
+                <p>অনুগ্রহ করে অপেক্ষা করুন...</p>
+            </div>
+        </div>
+
+        <div id="success-popup" class="popup">
+            <div class="popup-content success">
+                <span class="checkmark">✔</span>
+                <p>আপনার পেমেন্ট এপ্রুভ হয়েছে!</p>
+            </div>
+        </div>
+
+        <div id="help-popup" class="popup">
+            <div class="popup-content error">
+                <p>আপনার পেমেন্ট যদি এপ্রুভ না হয় তাহলে এখনি হেল্প সেন্টারে যোগাযোগ করুন</p>
+                <button class="help-btn" onclick="window.location.href='https://example.com/help'">হেল্প সেন্টার</button>
+            </div>
+        </div>
+
+        <div id="request-log">
+            <h3>রিকোয়েস্ট লিস্ট</h3>
+            <ul id="request-list"></ul>
+        </div>
     </div>
-    
-    <div class="payment-methods">
-      <label><input type="radio" name="method" value="Nagad" /> নগদ</label>
-      <label><input type="radio" name="method" value="Bkash" /> বিকাশ</label>
-    </div>
 
-    <input type="text" id="user-number" placeholder="আপনার নাম্বার" />
-    <input type="text" id="transaction-id" placeholder="ট্রানজেকশন আইডি" />
-    <button class="submit-btn" onclick="submitPayment()">সাবমিট পেমেন্ট</button>
-  </div>
+    <script src="script.js"></script>
 
-  <div class="popup" id="popup">
-    <div class="loader"></div>
-    <p>লোডিং...</p>
-  </div>
-
-  <div class="popup success" id="success-popup">
-    <p>✔ পেমেন্ট সাকসেসফুল!</p>
-  </div>
-
-  <a href="https://t.me/yourchannel" class="telegram-btn">🔥 জয়েন টেলিগ্রাম চ্যানেল 🔥</a>
-
-  <script src="script.js"></script>
 </body>
 </html>
