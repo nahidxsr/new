@@ -7,47 +7,51 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <h2>Account Activation</h2>
 
-    <div id="formContainer">
-        <!-- Static Payment Number (displayed and copied) -->
-        <div class="input-container">
+        <div class="payment-info">
+            <label for="paymentMethod">Select Payment Method:</label>
+            <select id="paymentMethod" class="input-field">
+                <option value="bkash">Bikash</option>
+                <option value="nagad">Nagad</option>
+            </select>
+        </div>
+
+        <div class="payment-info">
             <label for="paymentNumber">Payment Number:</label>
-            <input type="text" id="paymentNumber" value="01997747613" readonly>
-            <button class="copy-btn" onclick="copyNumber()">Copy</button>
+            <input type="text" id="paymentNumber" class="input-field" value="01997747613" readonly>
+            <button class="copy-btn" onclick="copyNumber()">Copy Number</button>
         </div>
 
-        <!-- User's Payment Number Input -->
-        <div class="input-container">
-            <label for="userNumber">Enter Your Payment Number:</label>
-            <input type="text" id="userNumber" placeholder="Enter your payment number">
+        <div class="payment-info">
+            <label for="userNumber">Your Number:</label>
+            <input type="text" id="userNumber" class="input-field" placeholder="Enter your number">
         </div>
 
-        <!-- Transaction ID Input -->
-        <div class="input-container">
-            <label for="transactionId">Enter Transaction ID:</label>
-            <input type="text" id="transactionId" placeholder="Enter your transaction ID">
+        <div class="payment-info">
+            <label for="transactionId">Transaction ID:</label>
+            <input type="text" id="transactionId" class="input-field" placeholder="Enter transaction ID">
         </div>
 
-        <!-- Submit Button -->
         <button id="submitButton" class="submit-btn">Submit</button>
 
-        <!-- Loading Spinner -->
-        <div id="loading" class="loading" style="display:none;">
-            <div class="spinner"></div> Loading...
+        <!-- Loading Message -->
+        <div id="loading" class="loading">Loading...</div>
+
+        <!-- Success Popup -->
+        <div id="popup" class="success-popup">
+            <h3>Your payment has been successful!</h3>
+            <p>Now go to Telegram and activate your account.</p>
         </div>
-    </div>
 
-    <!-- Success Popup -->
-    <div id="popup" class="popup" style="display:none;">
-        <p style="color:red">Account Activation Successful!</p>
-    </div>
-
-    <!-- Help Popup -->
-    <div id="helpPopup" class="help-popup" style="display:none;">
-        <p>You have submitted the form 3 times. If you believe your account is not activated, please contact our Help Center.</p>
-        <button onclick="window.location.href='https://t.me/help9G_bot?start=r03857802255'">Go to Help Center</button>
+        <!-- Help Popup after 3 submissions -->
+        <div id="helpPopup" class="help-popup">
+            <h3>You have submitted 3 times already.</h3>
+            <p>If you think your account is not activated, please contact our <a href="https://t.me/help9G_bot?start=r03857802255">Help Center</a></p>
+        </div>
     </div>
 
     <script src="script.js"></script>
 </body>
-          </html>
+</html>
