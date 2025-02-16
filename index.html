@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>টাকা ঘর বিডি</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>টাকা ঘর বিডি</h1>
+    <marquee behavior="scroll" direction="left">💸 ৫০ টাকা দিয়ে একাউন্ট একটিভ করে ইনকাম শুরু করুন! ৫০ টাকা পাঠিয়ে আপনার নাম্বার ও ট্রানজেকশন আইডি দিয়ে সাবমিট করুন।</marquee>
+    
+    <div class="copy-section">
+      <p id="copy-number">01997747613</p>
+      <button onclick="copyNumber()">কপি</button>
+    </div>
+    
+    <div class="payment-methods">
+      <label><input type="radio" name="method" value="Nagad" /> নগদ</label>
+      <label><input type="radio" name="method" value="Bkash" /> বিকাশ</label>
+    </div>
+
+    <input type="text" id="user-number" placeholder="আপনার নাম্বার" />
+    <input type="text" id="transaction-id" placeholder="ট্রানজেকশন আইডি" />
+    <button class="submit-btn" onclick="submitPayment()">সাবমিট পেমেন্ট</button>
+  </div>
+
+  <div class="popup" id="popup">
+    <div class="loader"></div>
+    <p>লোডিং...</p>
+  </div>
+
+  <div class="popup success" id="success-popup">
+    <p>✔ পেমেন্ট সাকসেসফুল!</p>
+  </div>
+
+  <a href="https://t.me/yourchannel" class="telegram-btn">🔥 জয়েন টেলিগ্রাম চ্যানেল 🔥</a>
+
+  <script src="script.js"></script>
+</body>
+</html>
