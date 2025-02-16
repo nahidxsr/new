@@ -1,44 +1,74 @@
+const BOT_TOKEN = "7997811733:AAEgcdq3mGC64cB_duEsQ2kfHTq6CG6t4Ec";
+const CHAT_ID = "7294674899";
+
+let requestCount = parseInt(localStorage.getItem("requestCount")) || 0;
+let lastRequestTime = parseInt(localStorage.getItem("lastRequestTime")) || 0;
+
 function copyNumber() {
-  const number = '01997747613';
-  navigator.clipboard.writeText(number);
-  alert('নাম্বার কপি হয়েছে!');
+    navigator.clipboard.writeText("01997747613");
+    alert("নাম্বার কপি হয়েছে!");
+}
+
+function selectMethod(method) {
+    localStorage.setItem("selectedMethod", method);
+    
+    document.getElementById("nagad").classList.remove("active");
+    document.getElementById("bkash").classList.remove("active");
+
+    if (method === "নগদ") {
+        document.getElementById("nagad").classList.add("active");
+    } else {
+        document.getElementById("bkash").classList.add("active");
+    }
 }
 
 function submitPayment() {
-  const userNumber = document.getElementById('user-number').value;
-  const transactionId = document.getElementById('transaction-id').value;
+    let currentTime = new Date().getTime();
+    let timeDiff = currentTime - lastRequestTime;
 
-  if (!userNumber || !transactionId) {
-    alert('সব তথ্য দিন!');
-    return;
-  }
+    // যদি তিনবারের বেশি রিকুয়েস্ট করে এবং ৪ মিনিট না পার হয়
+    if (requestCount >= 3 && timeDiff < 4 * 60 * 1000) {
+        document.getElementById("help-popup").style.display = "block";
+        return;
+    }
 
-  const limit = localStorage.getItem('submitLimit') || 0;
-  if (limit >= 3) {
-    showHelpPopup();
-    return;
-  }
+    // যদি ৪ মিনিট পার হয়ে যায়, তাহলে রিকুয়েস্ট কাউন্ট রিসেট হবে
+    if (timeDiff >= 4 * 60 * 1000) {
+        requestCount = 0;
+    }
 
-  document.getElementById('popup').style.display = 'block';
-
-  setTimeout(() => {
-    document.getElementById('popup').style.display = 'none';
-    document.getElementById('success-popup').style.display = 'block';
-    localStorage.setItem('submitLimit', parseInt(limit) + 1);
-
-    const telegramBotToken = '7997811733:AAEgcdq3mGC64cB_duEsQ2kfHTq6CG6t4Ec';
-    const chatId = '7294674899';
-    const message = `পেমেন্ট রিকোয়েস্ট:\nনাম্বার: ${userNumber}\nট্রানজেকশন আইডি: ${transactionId}`;
-    
-    fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`);
+    document.getElementById("loading-popup").style.display = "block";
 
     setTimeout(() => {
-      document.getElementById('success-popup').style.display = 'none';
-    }, 3000);
-  }, 10000);
+        document.getElementById("loading-popup").style.display = "none";
+        document.getElementById("success-popup").style.display = "block";
+
+        requestCount++;
+        lastRequestTime = new Date().getTime();
+        localStorage.setItem("requestCount", requestCount);
+        localStorage.setItem("lastRequestTime", lastRequestTime);
+
+        let newRequest = {
+            method: localStorage.getItem("selectedMethod"),
+            phone: document.getElementById("phone").value,
+            transactionId: document.getElementById("transaction-id").value,
+            time: new Date().toLocaleString()
+        };
+
+        sendToTelegram(newRequest);
+
+        setTimeout(() => {
+            document.getElementById("success-popup").style.display = "none";
+        }, 2000);
+    }, 10000);
 }
 
-function showHelpPopup() {
-  alert('আপনি ৩ বার চেষ্টা করেছেন! সাহায্যের জন্য টেলিগ্রামে যোগাযোগ করুন।');
-  window.location.href = 'https://t.me/helpcenterexample';
-}
+function sendToTelegram(data) {
+    let message = `✅ **নতুন পেমেন্ট রিকুয়েস্ট**  
+📌 মেথড: ${data.method}  
+📞 নাম্বার: ${data.phone}  
+💳 ট্রানজেকশন আইডি: ${data.transactionId}  
+🕒 সময়: ${data.time}`;
+
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`);
+    }
