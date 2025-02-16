@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Activation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="formContainer">
+        <!-- Static Payment Number (displayed and copied) -->
+        <div class="input-container">
+            <label for="paymentNumber">Payment Number:</label>
+            <input type="text" id="paymentNumber" value="018XXXXXXXXX" readonly>
+            <button class="copy-btn" onclick="copyNumber()">Copy</button>
+        </div>
+
+        <!-- User's Payment Number Input -->
+        <div class="input-container">
+            <label for="userNumber">Enter Your Payment Number:</label>
+            <input type="text" id="userNumber" placeholder="Enter your payment number">
+        </div>
+
+        <!-- Transaction ID Input -->
+        <div class="input-container">
+            <label for="transactionId">Enter Transaction ID:</label>
+            <input type="text" id="transactionId" placeholder="Enter your transaction ID">
+        </div>
+
+        <!-- Submit Button -->
+        <button id="submitButton" class="submit-btn">Submit</button>
+
+        <!-- Loading Spinner -->
+        <div id="loading" class="loading" style="display:none;">
+            <div class="spinner"></div> Loading...
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div id="popup" class="popup" style="display:none;">
+        <p>Account Activation Successful!</p>
+    </div>
+
+    <!-- Help Popup -->
+    <div id="helpPopup" class="help-popup" style="display:none;">
+        <p>You have submitted the form 3 times. If you believe your account is not activated, please contact our Help Center.</p>
+        <button onclick="window.location.href='https://t.me/your_telegram_channel'">Go to Help Center</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+          </html>
