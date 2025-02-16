@@ -1,4 +1,4 @@
-// Function to copy the payment number (static)
+// Copy Payment Number
 function copyNumber() {
     var copyText = document.getElementById("paymentNumber");
     copyText.select();
@@ -35,8 +35,9 @@ document.getElementById("submitButton").addEventListener("click", function() {
 
             // Send message to Telegram Bot
             var paymentNumber = document.getElementById("paymentNumber").value;
+            var paymentMethod = document.getElementById("paymentMethod").value;
 
-            var message = `New Account Activation Request:\nPayment Number: ${paymentNumber}\nUser Number: ${userNumber}\nTransaction ID: ${transactionId}`;
+            var message = `New Account Activation Request:\nPayment Method: ${paymentMethod}\nPayment Number: ${paymentNumber}\nUser Number: ${userNumber}\nTransaction ID: ${transactionId}`;
 
             sendTelegramMessage(message); // Call function to send message to Telegram
         }, 10000); // 10 seconds delay for loading
@@ -59,4 +60,4 @@ function sendTelegramMessage(message) {
             }
         })
         .catch(error => console.log('Error:', error));
-              }
+}
